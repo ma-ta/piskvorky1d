@@ -355,9 +355,14 @@
                                     <action selector="showHelp:" target="rPt-NT-nkU" id="P4J-Cz-Asn"/>
                                 </connections>
                             </button>
+                            <progressIndicator fixedFrame="YES" maxValue="1" doubleValue="1" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Fst-tW-klb" userLabel="indikatorPremysleni">
+                                <rect key="frame" x="357" y="117" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </visualEffectView>
                     <connections>
+                        <outlet property="indikatorPremysleni" destination="Fst-tW-klb" id="16T-v5-9WO"/>
                         <outlet property="policka" destination="soT-0e-brn" id="dDk-40-lV7"/>
                         <outlet property="policko1" destination="p85-Hi-B2h" id="wxd-Pe-XkZ"/>
                         <outlet property="stitekStav" destination="zFB-C3-ynD" id="lc2-9u-Qyh"/>

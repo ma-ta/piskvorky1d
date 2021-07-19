@@ -14,7 +14,10 @@ class ViewController: NSViewController {
     let NAZEV_APLIKACE = "Piškvorky 1D"
     // počet políček herního pole
     let POCET_POLICEK: UInt8 = 10
+    // počet nepřerušených políček k výhře
     let POZADOVANYCH_POLICEK: UInt8 = 3
+    // zpoždění při tahu počítače (sekund)
+    let ZPOZDENI = 0...4
     // symboly hráčů
     let ZNAKY_HRACU: [UInt8: String] = [0: "✕",
                                         1: "○"]
@@ -63,6 +66,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var stitekStav: NSButton!
     @IBOutlet weak var stitekZnakHrace: NSButton!
     @IBOutlet weak var stitekVysledek: NSTextField!
+    @IBOutlet weak var indikatorPremysleni: NSProgressIndicator!
     var herniPolicka: [NSButton] = []
     
     
@@ -185,8 +189,10 @@ class ViewController: NSViewController {
         stitekStav.title = "\(INFO_NA_TAHU[UInt8(naTahu)]!)"
         stitekZnakHrace.title = "\(ZNAKY_HRACU[UInt8(naTahu)]!)"
         
+        print("Nová hra")  // debug log
+        
         if naTahu == 1 {
-            tah_pocitace()
+            tah_pocitace_timer()
         }
     }
     
@@ -215,7 +221,7 @@ class ViewController: NSViewController {
             case 0:
                 naTahu = 1
                 stitekStav.title = "\(HRAC2)"
-                tah_pocitace()
+                tah_pocitace_timer()
             default:
                 naTahu = 0
                 stitekStav.title = "\(HRAC1)"
@@ -227,7 +233,18 @@ class ViewController: NSViewController {
     }
     
     // implementuje strategii AI (náhodný tah)
-    func tah_pocitace() {
+    func tah_pocitace_timer() {
+        
+        // start animace indikátoru přemýšlení
+        indikatorPremysleni.startAnimation(self)
+        
+        // zpoždění akce pro lepší pocit hráče
+        let SEKUNDY = Int.random(in: ZPOZDENI)
+        
+        perform(#selector(tah_pocitace), with: nil, afterDelay: Double(SEKUNDY))
+
+    }
+    @objc func tah_pocitace() {
         volnychPolicek -= 1
         var nahodny_tip = Int.random(in: 0...Int(POCET_POLICEK)-1)
         while herniPole[nahodny_tip] != -1 {
@@ -235,6 +252,10 @@ class ViewController: NSViewController {
         }
         herniPole[nahodny_tip] = 1
         vykresliHerniPole()
+        
+        // debug log
+        print(herniPole)
+        print("Volných políček: \(volnychPolicek)")
         
         let vyhodnoceni = vyhodnot()
         switch vyhodnoceni {
@@ -247,7 +268,7 @@ class ViewController: NSViewController {
             case 0:
                 naTahu = 1
                 stitekStav.title = "\(HRAC2)"
-                tah_pocitace()
+                tah_pocitace_timer()
             default:
                 naTahu = 0
                 stitekStav.title = "\(HRAC1)"
@@ -255,6 +276,8 @@ class ViewController: NSViewController {
             }
             stitekZnakHrace.title = "\(ZNAKY_HRACU[UInt8(naTahu)]!)"
         }
+        
+        indikatorPremysleni.stopAnimation(self)
     }
     
     // vyhodnocení stavu hry
