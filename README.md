@@ -2,7 +2,7 @@
 
 > Hra piškvorky v jednorozměrném poli pro Apple macOS
 
-![Screenshot Piškvorky 1D](screenshot-dark.png)
+![Screenshot Piškvorky 1D](screenshot.png)
 
 ## Základní popis
 > Polotovar desktopové aplikace pro macOS
