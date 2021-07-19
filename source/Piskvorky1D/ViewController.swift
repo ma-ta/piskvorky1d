@@ -17,7 +17,7 @@ class ViewController: NSViewController {
     // počet nepřerušených políček k výhře
     let POZADOVANYCH_POLICEK: UInt8 = 3
     // zpoždění při tahu počítače (sekund)
-    let ZPOZDENI = 0...4
+    let ZPOZDENI = 1...4
     // symboly hráčů
     let ZNAKY_HRACU: [UInt8: String] = [0: "✕",
                                         1: "○"]
