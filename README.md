@@ -18,4 +18,4 @@ Hlavní okno aplikace obsahuje deset herních políček, do nichž kliknutím za
 
 ## Ke stažení
 
-- [macOS 11.4+ (Apple Silicon & Intel)](Piskvorky1D.zip)
+- [macOS 11.4+ (Apple Silicon & Intel)](//github.com/ma-ta/piskvorky1d/raw/main/Piskvorky1D.zip)
