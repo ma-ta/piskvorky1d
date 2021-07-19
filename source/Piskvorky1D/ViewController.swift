@@ -120,10 +120,16 @@ class ViewController: NSViewController {
     // vrátí výchozí stav a restartuje hru
     func novaHra() {
         
+        // textové informace o stavu hry
+        let INFO_NA_TAHU: [UInt8: String] = [
+            0: HRAC1,
+            1: HRAC2
+        ]
+        
         // určuje, zda hra ještě probíhá
         hra = true
         // určuje hráče, který je na tahu
-        naTahu = 0
+        naTahu = Int8(Int.random(in: 0...1))
         // zbývající volná herní políčka
         volnychPolicek = POCET_POLICEK
         // počet zbývajících tahů nutných k výhře
@@ -136,7 +142,7 @@ class ViewController: NSViewController {
         volnychPolicek = POCET_POLICEK
         vykresliHerniPole()
         
-        stitekStav.title = "\(HRAC1)"
+        stitekStav.title = "\(INFO_NA_TAHU[UInt8(naTahu)]!)"
         stitekZnakHrace.title = "\(ZNAKY_HRACU[UInt8(naTahu)]!)"
     }
     
