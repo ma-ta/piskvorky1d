@@ -9,7 +9,96 @@ import Cocoa
 
 class ViewController: NSViewController {
     
+    // NASTAVENÍ KONSTANT A VÝCHOZÍHO STAVU
+    
+    let NAZEV_APLIKACE = "Piškvorky 1D"
+    // počet políček herního pole
+    let POCET_POLICEK: UInt8 = 10
+    let POZADOVANYCH_POLICEK: UInt8 = 3
+    // symboly hráčů
+    let ZNAKY_HRACU: [UInt8: String] = [0: "✕",
+                                        1: "○"]
+    // řetězcové konstanty
+    let VYHRA = "V í t ě z e m   j e".uppercased()
+    let REMIZA = "R e m í z a !".uppercased()
+    let HRAC1 = "Jsi na tahu"
+    let HRAC2 = "Hraje počítač"
+    
+    // určuje, zda hra ještě probíhá
+    var hra: Bool = true
+    // určuje hráče, který je na tahu
+    var naTahu: Int8 = 0
+    // programové herní pole (icinializováno níže)
+    var herniPole: [Int8] = []
+    // zbývající volná herní políčka
+    var volnychPolicek: UInt8 = 0
+    // počet tahů nutných k výhře
+    var hrac1kVyhre: UInt8 = 0
+    var hrac2kVyhre: UInt8 = 0
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+        // vložení GUI políček do pole
+        for i in 0...POCET_POLICEK-1 {
+            herniPolicka.append(view.viewWithTag(Int(i)) as! NSButton)
+        }
+        
+        novaHra()
+    }
+    
+    override var representedObject: Any? {
+        didSet {
+            // Update the view, if already loaded.
+        }
+    }
+    
+    
+    
     // NAPOJENÍ OVLÁDACÍCH PRVKŮ GUI
+    
+    @IBOutlet weak var stitekStav: NSButton!
+    @IBOutlet weak var stitekZnakHrace: NSButton!
+    @IBOutlet weak var stitekVysledek: NSTextField!
+    var herniPolicka: [NSButton] = []
+    
+    
+    // kliknutí na štítek Stav po skončení hry
+    @IBAction func stitekStav(_ sender: Any) {
+        if hra == false {
+            novaHra()
+        }
+    }
+    
+    // kliknutí na herní políčko
+    @IBAction func polickoClick(_ sender: NSButton) {
+        
+        print("\(type(of: sender)): \(sender.tag)")  // debug log
+        
+        // ověří, zda je na tahu hráč (člověk)
+        if naTahu == 0 {
+            if hra {
+                // při splnění podmínek
+                if sender.title == "" {
+                    // vyhodnocení tahu
+                    tah(sender)
+                    
+                    // políčko je již obsazeno
+                } else {
+                    print("Políčko již náleží hráči \(sender.title)")  // debug log
+                }
+                // hra neprobíhá
+            } else {
+                print("Hra neprobíhá")  // debug log
+            }
+        } else {
+            print("Na tahu je počítač…")  // debug log
+        }
+        
+    }
     
     // MENU
     // Nová hra
@@ -41,61 +130,9 @@ class ViewController: NSViewController {
         
     }
     
-    // FORMULÁŘ
-    @IBOutlet weak var stitekStav: NSButton!
-    @IBOutlet weak var stitekZnakHrace: NSButton!
-    @IBOutlet weak var stitekVysledek: NSTextField!
-    
-    var herniPolicka: [NSButton] = []
-  
-    
-    // NASTAVENÍ KONSTANT A VÝCHOZÍHO STAVU
-    
-    let NAZEV_APLIKACE = "Piškvorky 1D"
-    // počet políček herního pole
-    let POCET_POLICEK: UInt8 = 10
-    let POZADOVANYCH_POLICEK: UInt8 = 3
-    // symboly hráčů
-    let ZNAKY_HRACU: [UInt8: String] = [0: "✕",
-                                        1: "○"]
-    // řetězcové konstanty
-    let VYHRA = "V í t ě z e m   j e".uppercased()
-    let REMIZA = "R e m í z a !".uppercased()
-    let HRAC1 = "Jsi na tahu"
-    let HRAC2 = "Hraje počítač"
-    
-    // určuje, zda hra ještě probíhá
-    var hra: Bool = true
-    // určuje hráče, který je na tahu
-    var naTahu: Int8 = 0
-    // programové herní pole (icinializováno níže)
-    var herniPole: [Int8] = []
-    // zbývající volná herní políčka
-    var volnychPolicek: UInt8 = 0
-    // počet tahů nutných k výhře
-    var hrac1kVyhre: UInt8 = 0
-    var hrac2kVyhre: UInt8 = 0
     
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        // vložení GUI políček do pole
-        for i in 0...POCET_POLICEK-1 {
-            herniPolicka.append(view.viewWithTag(Int(i)) as! NSButton)
-        }
-
-        novaHra()
-    }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-    
+    // FUNKCE
     
     // zobrazí aktuální programové herní pole v GUI
     func vykresliHerniPole() {
@@ -128,6 +165,9 @@ class ViewController: NSViewController {
         
         // určuje, zda hra ještě probíhá
         hra = true
+        stitekStav.isEnabled = false
+        stitekStav.removeAllToolTips()
+        stitekZnakHrace.isHidden = false
         // určuje hráče, který je na tahu
         naTahu = Int8(Int.random(in: 0...1))
         // zbývající volná herní políčka
@@ -144,31 +184,11 @@ class ViewController: NSViewController {
         
         stitekStav.title = "\(INFO_NA_TAHU[UInt8(naTahu)]!)"
         stitekZnakHrace.title = "\(ZNAKY_HRACU[UInt8(naTahu)]!)"
-    }
-    
-    // vyhodnocení stavu hry
-    func vyhodnot() -> Int8 {
-        // stav:
-        // -1 = remíza
-        //  0 = hra pokračuje
-        //  1 = výhra
         
-        for i in 1...POCET_POLICEK-2 {
-            if herniPole[Int(i)] != -1 {
-                if herniPole[Int(i)] == herniPole[Int(i)-1]
-                    && herniPole[Int(i)] == herniPole[Int(i)+1] {
-                        return 1  // výhra
-                }
-            }
+        if naTahu == 1 {
+            tah_pocitace()
         }
-        
-        if volnychPolicek < 1 {
-            return -1  // došla volná políčka = remíza
-        }
-        
-        return 0  // hra pokračuje
     }
-    
     
     // zpracování aktuálního tahu
     func tah(_ sender: NSButton) {
@@ -195,6 +215,7 @@ class ViewController: NSViewController {
             case 0:
                 naTahu = 1
                 stitekStav.title = "\(HRAC2)"
+                tah_pocitace()
             default:
                 naTahu = 0
                 stitekStav.title = "\(HRAC1)"
@@ -203,6 +224,60 @@ class ViewController: NSViewController {
             stitekZnakHrace.title = "\(ZNAKY_HRACU[UInt8(naTahu)]!)"
         }
 
+    }
+    
+    // implementuje strategii AI (náhodný tah)
+    func tah_pocitace() {
+        volnychPolicek -= 1
+        var nahodny_tip = Int.random(in: 0...Int(POCET_POLICEK)-1)
+        while herniPole[nahodny_tip] != -1 {
+            nahodny_tip = Int.random(in: 0...Int(POCET_POLICEK)-1)
+        }
+        herniPole[nahodny_tip] = 1
+        vykresliHerniPole()
+        
+        let vyhodnoceni = vyhodnot()
+        switch vyhodnoceni {
+        case -1,
+             1:
+            konecHry(stav: vyhodnoceni)
+        default:
+            // přepnutí aktivního hráče
+            switch naTahu {
+            case 0:
+                naTahu = 1
+                stitekStav.title = "\(HRAC2)"
+                tah_pocitace()
+            default:
+                naTahu = 0
+                stitekStav.title = "\(HRAC1)"
+                
+            }
+            stitekZnakHrace.title = "\(ZNAKY_HRACU[UInt8(naTahu)]!)"
+        }
+    }
+    
+    // vyhodnocení stavu hry
+    func vyhodnot() -> Int8 {
+        // stav:
+        // -1 = remíza
+        //  0 = hra pokračuje
+        //  1 = výhra
+        
+        for i in 1...POCET_POLICEK-2 {
+            if herniPole[Int(i)] != -1 {
+                if herniPole[Int(i)] == herniPole[Int(i)-1]
+                    && herniPole[Int(i)] == herniPole[Int(i)+1] {
+                    return 1  // výhra
+                }
+            }
+        }
+        
+        if volnychPolicek < 1 {
+            return -1  // došla volná políčka = remíza
+        }
+        
+        return 0  // hra pokračuje
     }
     
     // ukončí hru a zobrazí výherce
@@ -215,34 +290,13 @@ class ViewController: NSViewController {
             print("Došlo k remíze!")  // debug log
             
             stitekStav.title = REMIZA
+            stitekZnakHrace.isHidden = true
             stitekZnakHrace.title = ""
         }
         
         hra = false
-    }
-    
-    
-    // GUI
-    
-    // odchytí kliknutí na herní políčko
-    @IBAction func polickoClick(_ sender: NSButton) {
-        
-        print("\(type(of: sender)): \(sender.tag)")  // debug log
-        
-        if hra {
-            // při splnění podmínek
-            if sender.title == "" {
-                // vyhodnocení tahu
-                tah(sender)
-            
-            // políčko je již obsazeno
-            } else {
-                print("Políčko již náleží hráči \(sender.title)")  // debug log
-            }
-        // hra neprobíhá
-        } else {
-            print("Hra neprobíhá")  // debug log
-        }
+        stitekStav.isEnabled = true
+        stitekStav.toolTip = "Nová hra"
     }
     
 

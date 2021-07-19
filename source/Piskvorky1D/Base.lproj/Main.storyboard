@@ -222,6 +222,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="stitekStav:" target="XfG-lQ-9wD" id="qa9-da-89L"/>
+                                </connections>
                             </button>
                             <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="9rc-kj-kZC" userLabel="stitekZnakHrace">
                                 <rect key="frame" x="318" y="110" width="31" height="30"/>
@@ -342,7 +345,7 @@
                                 </connections>
                             </button>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="Zr9-NT-8M9" userLabel="tlacitkoNapoveda">
-                                <rect key="frame" x="467" y="6" width="25" height="25"/>
+                                <rect key="frame" x="470" y="3" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" borderStyle="border" inset="2" id="Cyr-7O-bB3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
