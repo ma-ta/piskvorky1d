@@ -32,3 +32,8 @@ Hlavní okno aplikace obsahuje deset herních políček, do nichž kliknutím za
   - různá velikost herního pole
   - nastavení kritérií výhry (počtu obsazených políček)
   - ukládání / zobrazení výsledků předchozích kol
+
+### Známé chyby:
+- po zavření okna se neukončí aplikace:
+  - nové okno již nejde otevřít
+  - položka Nápověda v hlavním menu zobrazí prázdný dialog
