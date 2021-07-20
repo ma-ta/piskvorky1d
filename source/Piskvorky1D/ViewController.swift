@@ -12,6 +12,12 @@ class ViewController: NSViewController {
     // NASTAVENÍ KONSTANT A VÝCHOZÍHO STAVU
     
     let NAZEV_APLIKACE = "Piškvorky 1D"
+    // zvuky aplikace
+    let ZVUKY = true  // zvuky zap/vyp
+    let ZVUK_OBSAZENO = NSSound(named: "Sosumi")
+    let ZVUK_KONEC = NSSound(named: "Glass")
+    let ZVUK_TAH = NSSound(named: "Frog")
+    
     // počet políček herního pole
     let POCET_POLICEK: UInt8 = 10
     // počet nepřerušených políček k výhře
@@ -93,6 +99,8 @@ class ViewController: NSViewController {
                     // políčko je již obsazeno
                 } else {
                     print("Políčko již náleží hráči \(sender.title)")  // debug log
+                    // přehraje zvukový alert
+                    if ZVUKY { ZVUK_OBSAZENO?.play() }
                 }
                 // hra neprobíhá
             } else {
@@ -112,7 +120,7 @@ class ViewController: NSViewController {
         
         let textNapovedy =
             """
-            Vítejte ve hře \(NAZEV_APLIKACE).
+            Vítej ve hře \(NAZEV_APLIKACE).
             
             Cílem hry je získat nepřerušenou\nřadu \(POZADOVANYCH_POLICEK) symbolů \(ZNAKY_HRACU[0]!).
             
@@ -217,6 +225,8 @@ class ViewController: NSViewController {
             konecHry(stav: vyhodnoceni)
         default:
             // přepnutí aktivního hráče
+            // přehraje zvukový alert
+            //if ZVUKY { ZVUK_TAH?.play() }
             switch naTahu {
             case 0:
                 naTahu = 1
@@ -305,10 +315,21 @@ class ViewController: NSViewController {
     
     // ukončí hru a zobrazí výherce
     func konecHry(stav: Int8) {
+        
+        // přehraje zvukový alert
+        if ZVUKY { ZVUK_KONEC?.play() }
+        
+        hra = false
+        stitekStav.isEnabled = true
+        stitekStav.toolTip = "Nová hra"
+        
+        //
+        // zvítězil hráč
         if stav == 1 {
             print("Vyhrává hráč \(ZNAKY_HRACU[UInt8(naTahu)]!) !")  // debug log
             
             stitekStav.title = VYHRA
+        // došlo k remíze
         } else if (stav == -1) {
             print("Došlo k remíze!")  // debug log
             
@@ -316,10 +337,6 @@ class ViewController: NSViewController {
             stitekZnakHrace.isHidden = true
             stitekZnakHrace.title = ""
         }
-        
-        hra = false
-        stitekStav.isEnabled = true
-        stitekStav.toolTip = "Nová hra"
     }
     
 
