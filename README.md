@@ -2,6 +2,9 @@
 
 > Hra piškvorky v jednorozměrném poli pro Apple macOS
 
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ma-ta/telethermo?include_prereleases)
+![GitHub](https://img.shields.io/github/license/ma-ta/telethermo)
+
 ![Screenshot Piškvorky 1D](screenshot.png)
 
 ## Ke stažení
