@@ -2,7 +2,8 @@
 //  ViewController.swift
 //  Piskvorky1D
 //
-//  Created by Ma-TA on 17.07.2021.
+//  Created on 17.07.2021 (MacBook Air M1, macOS 11)
+//  (c) 2021-2025  Ma-TA
 //
 
 import Cocoa
@@ -342,4 +343,3 @@ class ViewController: NSViewController {
 
 
 }
-
