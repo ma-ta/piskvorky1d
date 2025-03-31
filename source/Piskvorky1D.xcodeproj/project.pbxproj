@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,10 +28,8 @@
 /* Begin PBXFrameworksBuildPhase section */
 		0018445126A33B8700F31605 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -79,8 +77,6 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			name = Piskvorky1D;
 			productName = Piskvorky1D;
 			productReference = 0018445426A33B8700F31605 /* Piskvorky1D.app */;
@@ -109,7 +105,7 @@
 				Base,
 			);
 			mainGroup = 0018444B26A33B8700F31605;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 0018445526A33B8700F31605 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -122,25 +118,21 @@
 /* Begin PBXResourcesBuildPhase section */
 		0018445226A33B8700F31605 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				0018445C26A33B8800F31605 /* Assets.xcassets in Resources */,
 				0046E11A26A54097003BE3B1 /* Credits.rtf in Resources */,
 				0018445F26A33B8800F31605 /* Main.storyboard in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0018445026A33B8700F31605 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				0018445A26A33B8700F31605 /* ViewController.swift in Sources */,
 				0018445826A33B8700F31605 /* AppDelegate.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -156,7 +148,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		0018447826A33B8800F31605 /* Debug */ = {
+		0018447826A33B8800F31605 /* Debug configuration for PBXProject "Piskvorky1D" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -222,7 +214,7 @@
 			};
 			name = Debug;
 		};
-		0018447926A33B8800F31605 /* Release */ = {
+		0018447926A33B8800F31605 /* Release configuration for PBXProject "Piskvorky1D" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -281,7 +273,7 @@
 			};
 			name = Release;
 		};
-		0018447B26A33B8800F31605 /* Debug */ = {
+		0018447B26A33B8800F31605 /* Debug configuration for PBXNativeTarget "Piskvorky1D" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -307,7 +299,7 @@
 			};
 			name = Debug;
 		};
-		0018447C26A33B8800F31605 /* Release */ = {
+		0018447C26A33B8800F31605 /* Release configuration for PBXNativeTarget "Piskvorky1D" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -339,19 +331,17 @@
 		0018444F26A33B8700F31605 /* Build configuration list for PBXProject "Piskvorky1D" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0018447826A33B8800F31605 /* Debug */,
-				0018447926A33B8800F31605 /* Release */,
+				0018447826A33B8800F31605 /* Debug configuration for PBXProject "Piskvorky1D" */,
+				0018447926A33B8800F31605 /* Release configuration for PBXProject "Piskvorky1D" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		0018447A26A33B8800F31605 /* Build configuration list for PBXNativeTarget "Piskvorky1D" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0018447B26A33B8800F31605 /* Debug */,
-				0018447C26A33B8800F31605 /* Release */,
+				0018447B26A33B8800F31605 /* Debug configuration for PBXNativeTarget "Piskvorky1D" */,
+				0018447C26A33B8800F31605 /* Release configuration for PBXNativeTarget "Piskvorky1D" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
