@@ -9,7 +9,7 @@
 
 ## Ke stažení
 
-- [macOS 15.0+ (Apple Silicon & Intel)](//github.com/ma-ta/piskvorky1d/raw/main/Piskvorky1D.app)
+- [macOS 15.0+ (Apple Silicon & Intel)](//github.com/ma-ta/piskvorky1d/raw/main/Piskvorky1D.zip)
 
 ## Základní popis
 > Polotovar desktopové aplikace pro macOS
