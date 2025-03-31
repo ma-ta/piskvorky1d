@@ -14,6 +14,8 @@
 ## Základní popis
 > Polotovar desktopové aplikace pro macOS
 
+[Všechny screenshoty](resources/screenshoty/macos-15.4)
+
 Účelem vývoje bylo především základní seznámení s vývojovým prostředím Xcode a jazykem Swift.
 
 Hlavní okno aplikace obsahuje deset herních políček, do nichž kliknutím zakreslujete svůj symbol „✕“. Cílem je pak získat nepřerušenou řadu 3 políček dříve než protihráč (resp. počítač).
